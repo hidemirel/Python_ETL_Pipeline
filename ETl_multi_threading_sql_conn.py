@@ -31,23 +31,7 @@ oracle_conn_test=f"oracle+cx_oracle://{oracle_test_conn_User}:{oracle_test_conn_
 # In[9]:
 
 
-order_sql_test='''select distinct
-campaign_subscriber_id,
-CAMPAIGN_INDV_CUSTOMER_ID,
-contract_type_id,
-subscriber_Status_id,
-P2P_VOICE_DAY_COUNT,
-SUBSCRIBER_TENURE_DAYS,
-subs_postpaid_tenure_months
-from campaign.EOM_CAMPAIGN_SUBS_HISTORY
-where monthly_calendar_id = TO_NUMBER(TO_CHAR(ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1), 'YYYYMM')) and
-CHARGING_METHOD_ID = 1 AND ---faturalÄ±
-subscriber_Status_id = 2 AND --- aktif
-SUBSCRIBER_TYPE_GROUP_ID = 158 AND --- abone tipi: bireysel
-CONTRACT_TYPE_ID in (1,41) AND --- ses ve data
-CAMPAIGN_INDV_CUSTOMER_ID <> -1 AND CAMPAIGN_INDV_CUSTOMER_ID IS NOT null and
-campaign_subscriber_id <> -1 AND campaign_subscriber_id IS NOT NULL AND rownum <= 1000000
-order by campaign_subscriber_id'''
+
 
 order_train_test='''SELECT * FROM TCRBAYRAKTAR.RISK_SCORE_202001_TRA 
 where rownum <=1000'''
